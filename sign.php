@@ -215,7 +215,7 @@ if ( isset($_SESSION['user'])) {
     }
     else {
     $errMSG = "Incorrect Credentials, Try again...";
-     die($errMSG) ;
+     // die($errMSG) ;
    }
     
   }
@@ -252,6 +252,7 @@ if ( isset($_SESSION['user'])) {
         <![endif]-->
     <!-- GLOBAL STYLES -->
      <!-- PAGE LEVEL STYLES -->
+     
      <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/login.css" >
     <link rel="stylesheet" href="assets/plugins/magic/magic.css" >
@@ -332,7 +333,7 @@ if ( isset($_SESSION['user'])) {
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
                 <input type="email"  required="required" placeholder="Your E-mail"  class="form-control" >
                 <br />
-                <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
+                <button class="btn text-muted text-center btn-primary" type="submit">Recover Password</button>
             </form>
         </div>
         <div id="signup" class="tab-pane">
@@ -396,7 +397,7 @@ if ( isset($_SESSION['user'])) {
     ?>
   
   <br>        <div class="form-group">
-                <button class="btn text-muted text-center btn-success" name="btn-signup" type="submit">Register</button>
+                <button class="btn text-muted text-center btn-primary" name="btn-signup" type="submit">Register</button>
                 </div>
             </form>
         </div>

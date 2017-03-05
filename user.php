@@ -31,6 +31,7 @@
   }
 }
 
+
 if( isset($_POST['btn-update']) ) {
   
 
@@ -43,18 +44,21 @@ if( isset($_POST['btn-update']) ) {
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
   
-  $description = trim($_POST['description']);
-  $description = strip_tags($description);
-  $description = htmlspecialchars($description);
-
-  $country = trim($_POST['country']);
-  $country = strip_tags($country);
-  $country = htmlspecialchars($country);
-  
   $phone = trim($_POST['phone']);
   $phone = strip_tags($phone);
   $phone = htmlspecialchars($phone);
   
+  $bank_acc_name = trim($_POST['bank_acc_name']);
+  $bank_acc_name = strip_tags($bank_acc_name);
+  $bank_acc_name = htmlspecialchars($bank_acc_name);
+
+  $bank_acc_no = trim($_POST['bank_acc_no']);
+  $bank_acc_no = strip_tags($bank_acc_no);
+  $bank_acc_no = htmlspecialchars($bank_acc_no);
+
+  $bank_name = trim($_POST['bank_name']);
+  $bank_name = strip_tags($bank_name);
+  $bank_name = htmlspecialchars($bank_name);
 
           // $username = $object['username'];
           // $fname  = $object['fullname'];
@@ -63,7 +67,7 @@ if( isset($_POST['btn-update']) ) {
           // $phone  = $object['phone'];
         
 
-  $result = db_query("UPDATE users SET Name = '$fullname', Email = '$email', Description = '$description', Country = '$country', Phone = '$phone'  WHERE Username = '$id'");
+  $result = db_query("UPDATE users SET Fullname = '$fullname', Email = '$email', Phone = '$phone', Bank_acc_name = '$bank_acc_name', Bank_acc_no = '$bank_acc_no', Bank_name = '$bank_name'  WHERE Username = '$id'");
   if ($result == 1) {
     $errMSG = " Records Updated!";
   }
@@ -173,20 +177,11 @@ if( isset($_POST['btn-update']) ) {
                                 <p>Stats</p>
                             </a>
                         </li> -->
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-                                    <p>Notifications</p>
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
+                        <li>
+                            <a href="user.php">
+                                <i class="ti-user"></i>
+                                <p><?php echo $id; ?></p>
+                            </a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -216,8 +211,10 @@ if( isset($_POST['btn-update']) ) {
                             <div class="content">
                                 <form method="post" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                                 <?php
-                                while ( $row = mysqli_fetch_array($result))
-                                    {
+                                $result = db_query("SELECT * FROM users WHERE Username = '$id'");
+                                while ($row = mysqli_fetch_array($result)) {
+                                    # code...
+                                                              
                                         
                                     # code...
                                     echo "
@@ -225,19 +222,19 @@ if( isset($_POST['btn-update']) ) {
                                         <div class='col-md-5'>
                                             <div class='form-group'>
                                                 <label>Username</label>
-                                                <input type='text' class='form-control border-input' disabled placeholder='Username' value='{$row["Username"]}'>
+                                                <input type='text' class='form-control border-input' disabled placeholder='Username'  value='{$row["Username"]}'>
                                             </div>
                                         </div>
                                         <div class='col-md-3'>
                                             <div class='form-group'>
                                                 <label>Fullname</label>
-                                                <input type='text' class='form-control border-input' placeholder='Fullname' value='{$row["Fullname"]}'>
+                                                <input type='text' class='form-control border-input' name='fullname' placeholder='Fullname' value='{$row["Fullname"]}'>
                                             </div>
                                         </div>
                                         <div class='col-md-4'>
                                             <div class='form-group'>
                                                 <label for='exampleInputEmail1'>Email address</label>
-                                                <input type='email' class='form-control border-input' placeholder='Email' value='{$row["Email"]}' >
+                                                <input type='email' class='form-control border-input' name='email' placeholder='Email' value='{$row["Email"]}' >
                                             </div>
                                         </div>
                                     </div>
@@ -246,13 +243,13 @@ if( isset($_POST['btn-update']) ) {
                                         <div class='col-md-6'>
                                             <div class='form-group'>
                                                 <label>Phone number</label>
-                                                <input type='text' class='form-control border-input' placeholder='Phone number' value='{$row["Phone"]}'>
+                                                <input type='text' class='form-control border-input' name='phone' placeholder='Phone number' value='{$row["Phone"]}'>
                                             </div>
                                         </div>
                                         <div class='col-md-6'>
                                             <div class='form-group'>
                                                 <label>Date Registered</label>
-                                                <input type='text' class='form-control border-input' placeholder='2017-02-26' value='{$row["Date_reg"]}' readonly>
+                                                <input type='text' class='form-control border-input' placeholder='2017-02-26' value='{$row["Date_reg"]}' disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -270,19 +267,19 @@ if( isset($_POST['btn-update']) ) {
                                         <div class='col-md-4'>
                                             <div class='form-group'>
                                                 <label>Account name</label>
-                                                <input type='text' class='form-control border-input' placeholder='Bank Account Name' value='{$row["Bank_acc_name"]}'>
+                                                <input type='text' class='form-control border-input' placeholder='Bank Account Name' value='{$row["Bank_acc_name"]}' name='bank_acc_name'>
                                             </div>
                                         </div>
                                         <div class='col-md-4'>
                                             <div class='form-group'>
                                                 <label>Account Number</label>
-                                                <input type='text' class='form-control border-input' placeholder='Account Number' value='{$row["Bank_acc_no"]}'>
+                                                <input type='text' class='form-control border-input' placeholder='Account Number' value='{$row["Bank_acc_no"]}' name='bank_acc_no' >
                                             </div>
                                         </div>
                                         <div class='col-md-4'>
                                             <div class='form-group'>
                                                 <label>Bank Name</label>
-                                                <input type='text' class='form-control border-input' placeholder='Bank Name' value='{$row["Bank_name"]}' >
+                                                <input type='text' class='form-control border-input' placeholder='Bank Name' value='{$row["Bank_name"]}' name='bank_name' >
                                             </div>
                                         </div>
                                     </div>
