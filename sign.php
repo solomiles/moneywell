@@ -5,7 +5,7 @@
  include_once 'dbconnect.php';
 
 if ( isset($_SESSION['user'])) {
-  header("location: index.php");
+  header("location: dashboard.php");
  }
 
  $error = false;
@@ -207,11 +207,11 @@ if ( isset($_SESSION['user'])) {
     $row = mysqli_fetch_array($result);
     $_SESSION['user'] = $row['Username'];
     $_SESSION['start'] = time();//taking login time
-    $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);//ending the session in 4 hours
+    $_SESSION['expire'] = $_SESSION['start'] + (130 * 60);//ending the session in 4 hours
     // if ($row['Admin'] == 1) {
     //   header('location: admin.php');
     // } else {
-      header("location: index.php");
+      header("location: dashboard.php");
     }
     else {
     $errMSG = "Incorrect Credentials, Try again...";
@@ -325,7 +325,7 @@ if ( isset($_SESSION['user'])) {
                   echo "\n</div>";
                   */
                 ?><br>
-                <button class="btn text-center btn-primary" name="btn-signin" type="submit">Sign in</button>
+                <button class="btn text-center btn-success" name="btn-signin" type="submit">Sign in</button>
             </form>
         </div>
         <div id="forgot" class="tab-pane">
@@ -333,7 +333,7 @@ if ( isset($_SESSION['user'])) {
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
                 <input type="email"  required="required" placeholder="Your E-mail"  class="form-control" >
                 <br />
-                <button class="btn text-muted text-center btn-primary" type="submit">Recover Password</button>
+                <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
             </form>
         </div>
         <div id="signup" class="tab-pane">
@@ -397,7 +397,7 @@ if ( isset($_SESSION['user'])) {
     ?>
   
   <br>        <div class="form-group">
-                <button class="btn text-muted text-center btn-primary" name="btn-signup" type="submit">Register</button>
+                <button class="btn text-muted text-center btn-success" name="btn-signup" type="submit">Register</button>
                 </div>
             </form>
         </div>
@@ -405,8 +405,8 @@ if ( isset($_SESSION['user'])) {
     <div class="text-center">
         <ul class="list-inline">
             <li class="btn-warning"><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-            <li class="btn-warning"><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-            <li class="btn-warning"><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
+            <li class="btn-warning"><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li><br><br>
+            <span style="color: #fff;">Don't Have An Account?</span><li class="btn-warning"><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li><span style="color: #fff;">Now!</span>
         </ul>
     </div>
 

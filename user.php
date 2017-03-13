@@ -129,7 +129,7 @@ if( isset($_POST['btn-update']) ) {
 
             <ul class="nav">
                 <li>
-                    <a href="index.php">
+                    <a href="dashboard.php">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>

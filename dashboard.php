@@ -2,6 +2,7 @@
  ob_start();
  session_start();
  include_once 'dbconnect.php';
+ 
   $today_date = Date('Y-m-d H:i:s');
   $errMSG = '';
  // if session is not set this will redirect to login page
@@ -22,7 +23,8 @@
    $connection = db_connect();
    $result = mysqli_query($connection,$query);
     return $result;
-  }  
+  } 
+   require_once 'auto_match.php';
 
     $id = $_SESSION['user'];
 
@@ -51,7 +53,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
 
         if ($result === true) {
     // $errMSG = "success! you may login now";
-            header("Location:index.php");
+            header("Location:dashboard.php");
    }else{
 
     $errMSG = "you are not allowed to provide help this moment";
@@ -71,7 +73,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
 
         if ($result === true) {
     // $errMSG = "success! you may login now";
-            header("Location:index.php");
+            header("Location:dashboard.php");
    }else{
 
     $errMSG = "you are not allowed to Get help this moment";
@@ -88,7 +90,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
 
         //if ($result === true) {
     // $errMSG = "success! you may login now";
-            //header("Location:index.php");
+            //header("Location:dashboard.php");
    //}//else{
 
     //$errMSG = "you are not allowed to Get help this moment";
@@ -149,7 +151,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
 
             <ul class="nav">
                 <li class="active">
-                    <a href="index.php">
+                    <a href="dashboard.php">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
@@ -617,7 +619,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
                     <div class="modal fade" id="details" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <?php
-                        
+                            
                                 # code...
                             echo "
                             <div class='modal-content'>
@@ -631,11 +633,11 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
                                             <div class='col-md-12'>
                                                 <div class='col-md-9'>
                                                     <div class='well'>
-                                                        <p>Name: solomon</p>
-                                                        <p>Phone: 08167348029</p>
-                                                        <p>Account name: solomon</p>
-                                                        <p>Account no: 2515152105</p>
-                                                        <p>Bank name: skye</p>
+                                                        <p>Name: </p>
+                                                        <p>Phone: </p>
+                                                        <p>Account name: </p>
+                                                        <p>Account no: </p>
+                                                        <p>Bank name: </p>
                                                     </div>
                                                 </div>
                                                 <div class='col-md-3'>
@@ -694,7 +696,7 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
                     <div class="modal fade" id="gh_details" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <?php
-                        
+                            
                                 # code...
                             echo "
                             <div class='modal-content'>
@@ -708,10 +710,11 @@ $reslt = db_query("SELECT * FROM waiting_list WHERE user_id = '$user_id'");
                                             <div class='col-md-12'>
                                                 <div class='col-md-9'>
                                                     <div class='well'>
-                                                        <p>Name: solomon</p>
-                                                        <p>Phone: 08167348029</p>
+                                                        <p>Name: </p>
+                                                        <p>Phone: </p>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class='col-md-3'>
                                                     <div class='row'>
                                                         <div class='col-md-12'>
